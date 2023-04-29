@@ -4,10 +4,22 @@
 <EditForm EditContext="editContext" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
     <div class="mb-3">
-        <label>Boleta:</label>
+        <h3>Modificar datos Boleta</h3>
+        <label>Portería:</label>
         <div>
-            <InputText class="form-control" @bind-Value="@ticket.Porteria" />
+            <select @bind="ticket.Porteria">
+                <option value="0">Seleccione una portería</option>
+                <option value="Norte">Norte</option>
+                <option value="Sur">Sur</option>
+                <option value="Oriente">Oriental</option>
+                <option value="Occidente">Occidental</option>
+            </select>
             <ValidationMessage For="@(()=>ticket.Porteria)" />
+        </div>
+        <div>
+            <label>Fecha Uso:</label>
+            <InputDate class="form-control" asp-for="DateTime" @bind-Value="@ticket.FechaUso" />
+            <ValidationMessage For="@(()=>ticket.FechaUso)" />
         </div>
         <button class="btn btn-primary" type="submit">Guardar Cambios</button>
         <button class="btn btn-success" @onclick="ReturnAction">Regresar</button>
