@@ -1,13 +1,9 @@
-﻿@page "/countries"
+﻿@page "/tickets"
 @using Tickets.Shared.Entites;
 @using Tickets.WEB.Repositories;
 @inject IRepository repository
 
-<h3>Paises</h3>
-
-<div class="mb-3">
-    <a class="btn btn-primary" href="/countries/create">Nuevo País</a>
-</div>
+<h3>Validar Boleta</h3>
 
 <GenericList MyList="Tickets">
     <Body>
@@ -15,7 +11,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>País</th>
+                    <th>Boleta</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +37,7 @@
 
     protected async override Task OnInitializedAsync()
     {
-        var responseHppt = await repository.Get<List<Ticket>>("api/tickets");
+        var responseHppt = await repository.Get<List<Ticket>>("/api/tickets");
         Tickets = responseHppt.Response!;
     }
 }
