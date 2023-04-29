@@ -10,6 +10,13 @@
 
 <GenericList MyList="Tickets">
     <Body>
+        <div class="mb-6">
+            <label>ID de Boleta:</label>
+            <div>
+                <input class="form-control"  @bind="Id" placeholder="boleta" />
+                <a class="btn btn-primary" onclick="@ValidateAsync"> Validar </a>
+            </div>
+        </div>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -49,10 +56,26 @@
 @code {
     public List<Ticket>? Tickets { get; set; }
 
+    public Ticket? ticket { get; set; }
+
+    private int Id { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         await LoadAsync();
     }
+
+    private async Task ValidateAsync()
+    {
+        if (ticket!.FueUsada)
+        { 
+            await sweetAlertService.FireAsync("Posible fraude", "Esta boleta  fue usada en " + ticket.FechaUso + " en la portería " + ticket.Porteria, SweetAlertIcon.Error); 
+
+        }
+        
+    }
+
+
     private async Task LoadAsync()
     {
         var responseHttp = await repository.Get<List<Ticket>>("/api/tickets");
