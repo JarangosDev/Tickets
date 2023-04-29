@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickets.Shared", "Tickets.Shared\Tickets.Shared.csproj", "{699ABEE2-5D49-4E41-8990-FC9D5665C6CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tickets.Shared", "Tickets.Shared\Tickets.Shared.csproj", "{699ABEE2-5D49-4E41-8990-FC9D5665C6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickets.API", "Tickets.API\Tickets.API.csproj", "{A3173CAB-B36B-4FCB-A920-C9DF2FDCA2CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tickets.API", "Tickets.API\Tickets.API.csproj", "{A3173CAB-B36B-4FCB-A920-C9DF2FDCA2CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tickets.WEB", "Tickets.WEB\Tickets.WEB.csproj", "{0D15893D-F606-4BDD-BA7E-3ACCF85B116C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tickets.WEB", "Tickets.WEB\Tickets.WEB.csproj", "{0D15893D-F606-4BDD-BA7E-3ACCF85B116C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
