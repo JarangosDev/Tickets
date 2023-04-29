@@ -13,8 +13,8 @@
         <div class="mb-6">
             <label>ID de Boleta:</label>
             <div>
-                <input class="form-control"  @bind="Id" placeholder="boleta" />
-                <a class="btn btn-primary" onclick="@ValidateAsync"> Validar </a>
+                <input class="form-control" type="text" @bind-value="@Id" placeholder="Digite el id del boleto" />
+               <button class="btn btn-success"> Validar</button>
             </div>
         </div>
         <table class="table table-striped">
@@ -56,24 +56,41 @@
 @code {
     public List<Ticket>? Tickets { get; set; }
 
-    public Ticket? ticket { get; set; }
-
-    private int Id { get; set; }
+    private int Id;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadAsync();
     }
+    public Ticket? Ticket;
 
-    private async Task ValidateAsync()
-    {
-        if (ticket!.FueUsada)
-        { 
-            await sweetAlertService.FireAsync("Posible fraude", "Esta boleta  fue usada en " + ticket.FechaUso + " en la portería " + ticket.Porteria, SweetAlertIcon.Error); 
+    //private async task valid()
+    //{
+    //    var responsehttp = await repository.get<ticket>($"api/tickets/{id}");
 
-        }
-        
-    }
+    //    if (responsehttp.error)
+    //    {
+    //        if (responsehttp.httpresponsemessage.statuscode == system.net.httpstatuscode.notfound)
+    //        {
+    //            await sweetalertservice.fireasync("la boleta no está en la base de datos"," ", sweetalerticon.error);
+    //            return;
+    //        }
+    //        else
+    //        {
+    //            var messageerror = await responsehttp.geterrormessageasync();
+    //            await sweetalertservice.fireasync("error", messageerror, SweetAlertIcon.error);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        ticket = responsehttp.response;
+    //        if (ticket!.fueusada)
+    //        {
+    //            await sweetalertservice.fireasync("error", $"la boleta ya fue usada: hora de uso: {ticket.fueusada} porteria: {ticket.porteria}", sweetalerticon.error);
+    //            return;
+    //        }
+    //      }
+    //}
 
 
     private async Task LoadAsync()

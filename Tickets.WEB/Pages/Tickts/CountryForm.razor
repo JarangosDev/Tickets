@@ -6,6 +6,12 @@
     <div class="mb-3">
         <h3>Modificar datos Boleta</h3>
         <div>
+                <label>¿Fue Usada?:</label>
+                <select class="form-control" @bind="ticket.FueUsada">
+                <option value="0">Seleccione una opción</option>
+                <option value=True>Si</option>
+                <option value=False>No</option>
+                </select>
             <ValidationMessage For="@(()=>ticket.FueUsada)" />
         </div>
         <div>
@@ -19,8 +25,8 @@
                 <option value="0">Seleccione una portería</option>
                 <option value="Norte">Norte</option>
                 <option value="Sur">Sur</option>
-                <option value="Oriente">Oriental</option>
-                <option value="Occidente">Occidental</option>
+                <option value="Oriental">Oriental</option>
+                <option value="Occidental">Occidental</option>
             </select>
             <ValidationMessage For="@(()=>ticket.Porteria)" />
         </div>
