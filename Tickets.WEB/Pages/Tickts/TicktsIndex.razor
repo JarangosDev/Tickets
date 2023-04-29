@@ -10,8 +10,11 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>Boleta</th>
+                    <th>ID Boleta</th>
+                    <th>Fecha Uso</th>
+                    <th>¿Fue usada?</th>
+                    <th>Portería</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,11 +22,19 @@
                 {
                     <tr>
                         <td>
-                            <a class="btn btn-warning">Editar</a>
-                            <button class="btn btn-danger">Borrar</button>
+                            @ticket.Id
                         </td>
                         <td>
-                            @ticket.Id
+                            @ticket.FechaUso
+                        </td>
+                        <td>
+                            @ticket.FueUsada
+                        </td>
+                        <td>
+                            @ticket.Porteria
+                        </td>
+                        <td>
+                            <a class="btn btn-warning">Editar</a>
                         </td>
                     </tr>
                 }
