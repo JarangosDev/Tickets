@@ -2,8 +2,16 @@
 @using Tickets.Shared.Entites;
 @using Tickets.WEB.Repositories;
 @inject IRepository repository
+@inject NavigationManager navigationManager
+@inject SweetAlertService sweetAlertService
+
 
 <h3>Validar Boleta</h3>
+
+<Pagination CurrentPage="currentPage"
+            TotalPages="totalPages"
+            SelectedPage="SelectedPage" />
+
 
 <GenericList MyList="Tickets">
     <Body>
@@ -34,7 +42,7 @@
                             @ticket.Porteria
                         </td>
                         <td>
-                            <a class="btn btn-warning">Editar</a>
+                            <a href="/tickets/edit/@ticket.Id" class="btn btn-warning">Editar</a>
                         </td>
                     </tr>
                 }
@@ -46,9 +54,18 @@
 @code {
     public List<Ticket>? Tickets { get; set; }
 
-    protected async override Task OnInitializedAsync()
+    private int currentPage = 1;
+    private int totalPages;
+
+     protected async override Task OnInitializedAsync()
+    {
+        await Load();
+    }
+
+    private async Task Load()
     {
         var responseHppt = await repository.Get<List<Ticket>>("/api/tickets");
         Tickets = responseHppt.Response!;
     }
+
 }

@@ -1,0 +1,66 @@
+﻿@page "/tickets/edit/{Id:int}"
+@inject NavigationManager navigationManager
+@inject IRepository repository
+@inject SweetAlertService sweetAlertService
+
+<h3>Editar Boleta</h3>
+
+@if (ticket is null)
+{
+    <p>Cargando...</p>
+}
+else
+{
+    <TicktsForm @ref="ticktsForm" Ticket="ticket" OnValidSubmit="Edit" ReturnAction="Return" />
+}
+
+@code {
+    private Ticket? ticket;
+    private TicktsForm? ticktsForm;
+
+    [Parameter]
+    public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var responseHTTP = await repository.Get<Ticket>($"api/tickets/{Id}");
+
+        if (responseHTTP.Error)
+        {
+            if (responseHTTP.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                navigationManager.NavigateTo("/tickets");
+            }
+            else
+            {
+                var messageError = await responseHTTP.GetErrorMessageAsync();
+                await sweetAlertService.FireAsync("Error", messageError, SweetAlertIcon.Error);
+            }
+        }
+        else
+        {
+            ticket = responseHTTP.Response;
+        }
+    }
+
+    private async Task Edit()
+    {
+        var responseHTTP = await repository.Put("api/tickets", ticket);
+
+        if (responseHTTP.Error)
+        {
+            var mensajeError = await responseHTTP.GetErrorMessageAsync();
+            await sweetAlertService.FireAsync("Error", mensajeError, SweetAlertIcon.Error);
+        }
+        else
+        {
+            ticktsForm!.FormPostedSuccessfully = true;
+            navigationManager.NavigateTo("/tickets");
+        }
+    }
+
+    private void Return()
+    {
+        navigationManager.NavigateTo("/tickets");
+    }
+}
