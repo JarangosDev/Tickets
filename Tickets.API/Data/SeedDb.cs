@@ -22,7 +22,7 @@ namespace Tickets.API.Data
         {
             if (!_context.Tickets.Any())
             {
-                for (int i = 0; i < 500; i++) {
+                for (int i = 0; i < 50000; i++) {
                     _context.Tickets.Add(new Ticket { FechaUso = DateTime.Now, FueUsada = false, Porteria = null });
                 }
                 
